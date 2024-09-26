@@ -1,0 +1,7 @@
+# TODO: change link when the PR is merged
+# yaml-language-server: $schema=https://raw.githubusercontent.com/typst/hayagriva/3bab47a7dd3cc0d23d19740e9ff697c9598b3ac1/hayagriva.schema.json
+react-server-components:
+  type: article
+  date: "2024-01"
+  title: "Rick Astley: How An Internet Joke Revived My Career"
+  author: "Astley, Rick"
