@@ -23,7 +23,7 @@ Instalar [typst](https://github.com/typst/typst?tab=readme-ov-file#installation)
 
 ```bash
 # typst watch [input] [output]
-typst watch main.typ main.pdf
+typst watch ./src/main.typ main.pdf
 ```
 
 ### Por qué no usar X
@@ -32,6 +32,11 @@ typst watch main.typ main.pdf
 
 1. Está mal el formato. La numeración es inconsistente (I. y 1.1) y no parte de la portada como se indica.
 2. Está mal el template. No se usa el sistema de estilos de Word.
+
+#### LaTeX
+
+Más cacho de configurar el formato y más cacho el setup de compilación.
+Eso si, es LaTeX es mucho más extensible, hay herramientas como (tectonic)[https://tectonic-typesetting.github.io/en-US/] que ayudan en la compilación, y muy buenos paquetes en comparación a los de typst.
 
 ### Setup recomendado en VSCode
 
