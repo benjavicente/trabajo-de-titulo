@@ -1,6 +1,6 @@
 // Cover simple con el logo de la universidad
 // TODO: fix keyword arguments
-#let cover(title: str, author: str, description: str, lead: str, header: content, date: str, uc-logo: str) = {
+#let cover(title: none, author: none, description: none, lead: none, header: none, date: none, uc-logo: none) = {
   set par(first-line-indent: 0pt)
   page(numbering: none, {
     set rect(width: 100%, height: 100%, fill: rgb("e4e5ea"))
@@ -23,7 +23,7 @@
       grid.cell[],
       grid.cell[
         #v(1fr)
-        #align(center, text(size: 1.5em, weight: "bold", upper(title)))
+        #pad(x: 1em, upper(align(center, text(size: 1.5em, weight: "bold", hyphenate: false, title)))),
         #v(1fr)
         #align(center, text(weight: "semibold", upper(author)))
         #v(1fr)

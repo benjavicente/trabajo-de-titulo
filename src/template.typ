@@ -32,12 +32,11 @@
     pagebreak()
   }
 
-  // Etiqueta de código
-  show figure.where(kind: raw): set figure(supplement: [Código])
   // Código
-  import "@preview/codly:1.0.0": codly-init, codly
-  show: codly-init.with()
-  codly(zebra-fill: none, lang-stroke: none, stroke: 1pt + black.lighten(75%))
+  show figure.where(kind: raw): set figure(supplement: [Código])
+
+  // Links
+  show link: set text(fill: blue)
 
   // No enumerar títulos antes del contenido
   set heading(numbering: none)
@@ -47,8 +46,8 @@
 
 
 // Outline de las secciones
-#let main_outline() = {
-  outline(title: "Indice General", indent: auto, target: heading.where(supplement: [Contenido]))
+#let main_outline(depth: 2) = {
+  outline(title: "Indice General", indent: auto, depth: depth, target: heading.where(supplement: [Contenido]))
 }
 
 // Outline de las figuras (tablas, código, etc.)
@@ -59,6 +58,7 @@
 
 // Formato del contenido de la página
 #let content(doc) = {
+  pagebreak(weak: true)
   set heading(numbering: "1.")
   doc
 }
@@ -76,11 +76,18 @@
   pagebreak(weak: true)
   // Se establece que la numeración de las secciones del apéndice comience en 1,
   // con el heading de apéndice como padre.
-  heading([Anexos],level: 1, numbering: none)
-  outline(title: none, indent: auto, target: heading.where(supplement: [Anexos]))
+  heading([Anexos], level: 1, numbering: none)
+  outline(title: none, indent: auto, target: heading.where(supplement: [Anexo]))
   counter(heading).update(1)
-  set heading(offset: 1, supplement: [Anexos], bookmarked: true, numbering: (..numbs) => numbering("1.", ..numbs.pos().slice(1)))
+  set heading(offset: 1, supplement: [Anexo], bookmarked: true, numbering: (..numbs) => numbering("1.1.", ..numbs.pos().slice(1)))
   include(path)
 }
 
-
+#let todo(body) = {
+  v(-1em)
+  box(fill: gray.lighten(80%), outset: 0.5em, width: 100%)[
+    #text(weight: "bold")[TODO:]
+    #{body}
+  ]
+  v(0.5em)
+}
