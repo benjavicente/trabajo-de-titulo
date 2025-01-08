@@ -69,3 +69,84 @@
   )
   ]
 )
+
+#page(
+  flipped: true,
+  [
+    #show raw: set text(size: 8pt)
+    = Refractor de código con jscodeshift <appendix.jscodeshift>
+
+    ```ts
+    export default function (fileInfo, api) {
+      const j = api.jscodeshift, root = j(fileInfo.source);
+      // Step 1: Identify all helper functions
+      const helperFunctions = {};
+      root.find(j.FunctionDeclaration).forEach((path) => {
+        const functionName = path.node.id.name;
+        const returnStatement = j(path).find(j.ReturnStatement);
+        if (returnStatement.size() !== 1) return;
+        const argument = returnStatement.get(0)?.value?.argument;
+        if (argument && argument.type === "CallExpression" && argument.callee.name === "convexQuery") {
+          helperFunctions[functionName] = returnStatement.value.argument;
+        }
+      });
+      // Step 2: Replace all usages of the helper functions
+      Object.keys(helperFunctions).forEach((helperName) => {
+        const inlineEquivalent = helperFunctions[helperName];
+        root
+          .find(j.CallExpression, { callee: { name: helperName } })
+          .replaceWith((path) => {
+            const args = path.value.arguments;
+            const newCall = structuredClone(inlineEquivalent);
+            newCall.arguments[1] = args[0]; // Replace "args" in convexQuery with actual arguments
+            return newCall;
+          });
+      });
+      // Step 3: Remove unused helper functions
+      Object.keys(helperFunctions).forEach((helperName) => {
+        const isHelperUsed = root.find(j.Identifier, { name: helperName }).size() > 1;
+        if (!isHelperUsed) root.find(j.FunctionDeclaration, { id: { name: helperName } }).remove();
+      });
+      return root.toSource();
+    }
+    ```
+    
+    Código de entrada:
+    ```ts
+    export function getMessagesQuery(args: FunctionArgs<typeof api.messages.list>) {
+      return convexQuery(api.messages.list, args);
+    }
+    
+    export const Route = createFileRoute("...")({
+      loader: async ({ params: { inboxId } }) => {
+        await client.ensureQueryData(getMessagesQuery({ inboxId }));
+      },
+      component: RouteComponent,
+    });
+
+    function RouteComponent() {
+      const { inboxId } = Route.useParams();
+      const { data } = useSuspenseQuery(getMessagesQuery({ inboxId }));
+      // ...
+    }
+    ```
+
+    Código de salida:
+
+    ```ts
+    export const Route = createFileRoute("...")({
+      loader: async ({ params: { inboxId } }) => {
+        await client.ensureQueryData(convexQuery(api.messages.list, { inboxId }));
+      },
+      component: RouteComponent,
+    });
+    function RouteComponent() {
+      const { inboxId } = Route.useParams();
+      const { data } = useSuspenseQuery(convexQuery(api.messages.list, { inboxId }));
+      // ...
+    }
+    ```
+
+    
+  ]
+)

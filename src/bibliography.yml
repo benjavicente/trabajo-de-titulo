@@ -62,3 +62,33 @@ acid:
     volume: 15
     publisher: Association for Computing Machinery
     title: ACM Comput. Surv.
+
+# @inproceedings{Liu_2024, series={CHI ’24},
+#  title={“We Need Structured Output”: Towards User-centered Constraints on Large Language Model Output},
+#  url={http://dx.doi.org/10.1145/3613905.3650756},
+#  DOI={10.1145/3613905.3650756},
+#  booktitle={Extended Abstracts of the CHI Conference on Human Factors in Computing Systems},
+#  publisher={ACM},
+#  author={Liu, Michael Xieyang and Liu, Frederick and Fiannaca, Alexander J. and Koo, Terry and Dixon, Lucas and Terry, Michael and Cai, Carrie J.},
+#  year={2024},
+#  month=may, pages={1–9},
+#  collection={CHI ’24} }
+
+we-need-structured-output:
+  type: proceedings
+  title: "“We need Structured Output”: Towards User-centered Constraints on Large Language Model Output"
+  url: https://arxiv.org/pdf/2404.07362
+  doi: 10.1145/3613905.3650756
+  publisher: ACM
+  author:
+    - Liu, Michael Xieyang
+    - Liu, Frederick
+    - Fiannaca, Alexander J.
+    - Koo, Terry
+    - Dixon, Lucas
+    - Terry, Michael
+    - Cai, Carrie J.
+  date: "2024-05"
+  page-range: "1-9"
+  collection: "CHI ’24"
+  booktitle: "Extended Abstracts of the CHI Conference on Human Factors in Computing Systems"

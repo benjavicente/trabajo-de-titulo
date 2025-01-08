@@ -35,16 +35,26 @@
 )
 
 
-#TT.main_outline()
+#TT.main_outline(depth: 2)
 #TT.figure_outline()
 
 = Resumen
 
-#TT.todo[Resumen en español]
+En este informe, se muestra el trabajo realizado por Benjamín Vicente Goecke en el trabajo de título, entre septiembre y diciembre del 2024, desempáñandose como CTO en MOME. Los proyectos establecidos fueron la creación de un sistema para páginas web _white-label_ para la venta inmobiliaria, y la integración de inteligencia artificial en los canales de fuerza de ventas.
 
+Dentro los proyectos, se resolvieron problemas de arquitectura, de la modelación de la base de datos del inventario, del diseño del sistema web requerido para las páginas _white-label_, y del desarrollo de un sistema para integrar una inteligencia artificial para ayudar a la fuerza de ventas.
+
+En cada uno, se logró demostrar las competencias al aplicar conocimientos de computación para entender problemas complejos, diseñar y planificar soluciones innovadoras dado las características de los problemas, y llevar el desarrollo de estas soluciones, desde el realizado en el corto plazo dentro del trabajo de título, hasta el largo plazo con las estrategias y planificación realizada.
+
+
+#v(3em)
 = Abstract
 
-#TT.todo[Abstract en ingles]
+This report outlines the word done by Benjamín Vicente Goecke during his thesis project, between September and December 2024, working as CTO at MOME. The established projects included the creation of a system for _white-label_ web pages for real estate sales, and the integration of artificial intelligence into sales force channels.
+
+Within those projects, challenges were addressed in areas such as architecture, database modeling for the inventory system, the design of the web system required for the _white-label_ pages, and the development of a system to integrate artificial intelligence to assist the sales force.
+
+In each case, the competencies were addressed by applying computer science knowledge to understand complex problems, design and plan innovative solutions based on the characteristics of the problems, and carry out the development of these solutions, from the work done within the time of the thesis project, to the long-term, with the strategies and planning carried out.
 
 #show: TT.content
 
@@ -100,7 +110,7 @@ Estas competencias se pueden entender como etapas en el desarrollo de soluciones
 
 En la inscripción del trabajo de título, se plantearon los siguientes 2 proyectos a desarrollar:
 
-1. El desarrollo de sistema _white label_ para la creación de sitios web de proyectos inmobiliarios. Estos es, la creación de componentes que puedan ser personalizados como deseen las inmobiliarias, y la integración a un _content management system_ (CMS) que permita administrar las características e inventario de las unidades.
+1. El desarrollo de sistema _whitelabel_ para la creación de sitios web de proyectos inmobiliarios. Estos es, la creación de componentes que puedan ser personalizados como deseen las inmobiliarias, y la integración a un _content management system_ (CMS) que permita administrar las características e inventario de las unidades.
 
 2. La implementación de un _shared inbox_ impulsada por inteligencia artificial. Plataforma que permita el control y la gestión centralizada de la fuerza de ventas vía canales como WhatsApp, impulsada por inteligencia artificial, para otorgar respuestas 24/7 y reducir el trabajo realizado por la fuerza de ventas.
 
@@ -203,9 +213,9 @@ Este desarrollo no solo permitió obtener una solución funcional rápidamente, 
 == Problema a resolver
 
 El sistema que se buscó construir dentro de MOME, tiene 3 componentes principales:
-las páginas _white label_ para los proyectos inmobiliarios, la base de datos y procesos, y el panel de administrador.
+las páginas _white-label_ para los proyectos inmobiliarios, la base de datos y procesos, y el panel de administrador.
 
-El sistema  _white label_ provee las páginas de los proyectos a los cotizantes. Su información cambia infrecuentemente, la del proyecto mismo podría cambiar cada mes, y la información de precios y disponibilidad podría cambiar cada semana. Este sistema requiere tener una velocidad de carga muy alta, SEO y buen UX, y permitir la personalización de la página sin grandes costos.
+El sistema  _white-label_ provee las páginas de los proyectos a los cotizantes. Su información cambia infrecuentemente, la del proyecto mismo podría cambiar cada mes, y la información de precios y disponibilidad podría cambiar cada semana. Este sistema requiere tener una velocidad de carga muy alta, SEO y buen UX, y permitir la personalización de la página sin grandes costos.
 
 El panel de administrador es consumido por los gestores de los proyectos, por su personal de ventas y administradores de precios y disponibilidad de las unidades. El acceso a este es infrecuente y por pocos usuarios. Este debe ser intuitivo, cómodo de usar, y mantener los datos consistentes y actualizados.
 
@@ -221,7 +231,7 @@ Este sistema debe permitir diferentes niveles de lectura y modificación a la in
 
     node((0, 0), [Cotizantes], name: <cotizantes>),
     node((2, 0), [Gestores], name: <gestores>),
-    node((0, 1), [Web Proyectos _white label_], name: <web>),
+    node((0, 1), [Web Proyectos _white-label_], name: <web>),
     node((1, 1), [Base de datos y procesos], name: <db>),
     node((2, 1), [Panel de administrador], name: <admin>),
 
@@ -242,7 +252,7 @@ Este sistema debe permitir diferentes niveles de lectura y modificación a la in
 
 Dado el contexto actual de la empresa, se buscó una arquitectura que permita la rápida iteración sin comprometer sustancialmente la escalabilidad. Para cumplir, la arquitectura deberá permitir fácilmente componer diferentes funcionalidades.
 
-El diseño de el sistema _white label_ se detalla en su sección #link(<section.white-label>)[su sección correspondiente]. El panel de administrador, se decidió emplear un sistema simple de _single page application_ (SPA) con _React_ que se conecta al _backend_, utilizando #link("https://vite.dev/")[Vite] como _build tool_. Finalmente, el _backend_ requirió más análisis, dado que requiere estado persistente tanto en datos como en tareas.
+El diseño de el sistema _white-label_ se detalla en su sección #link(<section.white-label>)[su sección correspondiente]. El panel de administrador, se decidió emplear un sistema simple de _single page application_ (SPA) con _React_ que se conecta al _backend_, utilizando #link("https://vite.dev/")[Vite] como _build tool_. Finalmente, el _backend_ requirió más análisis, dado que requiere estado persistente tanto en datos como en tareas.
 
 Además de los requerimientos técnicos, es muy importante que el sistema permita la rápida iteración y desarrollo, sin comprometer sustancialmente lo que pueda hacer el sistema. Es por esto, es que se decidió usar un _Backend as a Service_ (BaaS) para el desarrollo del backend. De este modo, no se necesitará preocuparse de la infraestructura necesaria para las funcionalidades requeridas.
 
@@ -512,7 +522,7 @@ Si bien esto fue realizado para la carga a la base de datos, la validación es u
   caption: "Simplificación del esquema elaborado para la gestión de inventario",
 )
 
-Para las tablas de #text(fill: yellow.darken(20%))[relaciones] y las #text(fill: red)[unidades], se implementaron #text(fill: blue)[esquemas abstractos] que son heredados por otros o por #text(fill: green)[esquemas concretos], que poseen un nombre único dentro de su tabla, y posee atributos específicos. Los #text(fill: purple)[modelos y programas] son tablas asociadas solamente a viviendas.
+Para las tablas de #text(fill: yellow.darken(20%))[relaciones] y las #text(fill: red)[unidades], se implementaron #text(fill: blue)[esquemas abstractos] que son heredados por otros o por #text(fill: green)[esquemas concretos], que poseen un nombre único dentro de su tabla, y posee atributos específicos. Los #text(fill: purple)[modelos] y #text(fill: purple)[programas] son tablas asociadas solamente a viviendas.
 
 // La implementación de esto en código se ve de la siguiente forma:
 
@@ -592,7 +602,7 @@ Para las tablas de #text(fill: yellow.darken(20%))[relaciones] y las #text(fill:
 // ]
 
 #pagebreak(weak: true)
-= Sistema de páginas white label <section.white-label>
+= Sistema de páginas white-label <section.white-label>
 
 // #TT.todo[
 //   Explicar desafió: creación de componentes whitelabel, sistema de tokens de diseño para “pintar” componentes, revisión continua con equipo diseñador, renderizado de la página y la carga de componentes dinámicos (idea de backend for frontend, problemas de arquitecturas client-first), etc.
@@ -737,7 +747,7 @@ A esto se le suma la futura inclusión de conexión a sistemas, como por ejemplo
 
 Cuando llega un mensaje, se espera un tiempo definido antes de procesar. Si llega un nuevo mensaje, se cancela el procesamiento y se espera el nuevo mensaje, marcado en #text(fill: red)[rojo]. Además, si el ejecutivo de ventas toma el control de la conversación, se cancela el procesamiento.
 
-Dado la complejidad del sistema, se buscó realizar _test-driven-development_, donde se establecieron casos de prueba que establecen el funcionamiento esperado del sistema previo a su implementación completa. 
+Dado la complejidad del sistema, se buscó realizar un suite de tests, donde se establecieron casos de prueba que establecen el funcionamiento esperado del sistema previo a su implementación completa. 
 
 Realizar tests de este tipo involucra simular el avance en el tiempo en la cola de tareas usadas en el entorno de pruebas, que es poblado por rutinas internas.
 Convex posee una libraría para testear con #link("https://vitest.dev/")[Vitest], permitiendo simular el avance en el tiempo. Esta característica fue parte de lo que se revisó al elegir la arquitectura.
@@ -746,12 +756,55 @@ Convex posee una libraría para testear con #link("https://vitest.dev/")[Vitest]
 == Desarrollo realizado
 
 
-#TT.todo[
-  Ir más en detalle de como se desarrolló
-  - Integración con OpenAI: function calling e structured output
-  - Listado de casos probados
-  - Como se une todo en convex
-]
+Para la generación de texto en lenguaje natural, se utilizó OpenAI. Esto es dado que provee una API para la creación de conversaciones sin preocuparse del guardado del estado, es muy rápido de configurar en comparación a otras soluciones, y provee _structured-output_, sistema que permite garantizar el formato estructurado deseado en modelos generativos @we-need-structured-output.
+
+Inicialmente, y previo al estudio de la arquitectura, se desarrolló una versión inicial en Firebase, que fue usada para el primer cliente. Cada mensajes iniciaba el procesamiento en una rutina, y se usaba la base de datos Cloud Firestore, para coordinar la ejecución. Si bien, funciono en gran parte para el primer cliente, el flujo requería código complejo.
+
+Esto es dado al requerimiento permitir la cancelación de la rutina en cualquier momento. Sistemas de tareas, como #link("https://firebase.google.com/docs/functions/task-functions?gen=2nd")[Cloud Tasks], no proveen los mecanismos requeridos para la cancelación de tareas, se debe implementar manualmente. Como se mencionó anteriormente, Convex se eligió por tener un primitivo de tareas fácil de usar, que a futuro podría ser empleado con #link("https://www.convex.dev/components/workflow")[Workflows].
+
+Se configuró los tests, añadiendo los mocks para las llamadas externas a OpenAI, WhatsApp, y a las notificaciones, y la simulación del tiempo. Se crearon tests para revisar que:
+- Mandar varios mensajes en un corto periodo de tiempo solo hace una ejecución de la IA.
+- Cuando llegan mensajes, y la IA responde con una alerta, se notifica al ejecutivo de ventas.
+- No se llama la IA cuando llegan mensajes cuando el chat tiene la IA desactivada.
+- La IA indica que debe parar y se refleja el cambio en la base de datos.
+- El sistema no manda mensajes si el modelo partió la ejecución y se apaga la IA.
+
+Esto en el código, fue implementado en la siguiente forma:
+
+
+#figure(
+  ```ts
+  test("Multiple messages only triggers one AI execution", async () => {
+    const t = createConvextTestClient();
+    await t.mutation(internal.whatsapp.saveMessage, createSampleMessage());
+    await t.mutation(internal.whatsapp.saveMessage, createSampleMessage());
+    await t.finishAllScheduledFunctions(vi.runAllTimers);  // Se espera que terminen las tareas
+    expect(runAI).toHaveBeenCalledTimes(1);  // Función externa con mock
+  });
+  ```,
+  caption: "Ejemplo de test de Convex con Vitest para el sistema de IA",
+)
+
+
+#pagebreak(weak: true)
+= Otros desarrollos realizados
+
+Otro desarrollo destacable en el periodo del trabajo de título fue el refractor parcial del el dashboard donde se realizaron las pruebas para la gestión de inventario, por 2 problemas. Primero, una abstracción creada para evitar código, resultó en código más complejo. Segundo, la manera que se definía las rutas, causaba que no se reflejaran cambios en el modo de desarrollo (_hot-reloading_).
+
+Cambiar esto de forma manual tomaría múltiples horas, usar métodos como expresiones regulares no es suficiente, y usar modelos de IA generativa corre el riesgo de cambiar código que no debería ser cambiado. Yo no conocía en ese momento herramientas que pudieran realizar este trabajo, pero si sabia que existían y como se debería transformar el código.
+
+Es por esto que se usó modelos generativos para ayudar a generar código complejo para la refactorización. Se fue iterando con un modelo generativo, iterando el código complejo de 
+transformaciones de _abstract syntax trees_ con `jscodeshift`, hasta lograr lo deseado, en un menos de 1 hora, cambiando sobre de 200 lineas de código. Se puede ver el código final en el @appendix.jscodeshift.
+
+
+= Conclusiones
+
+Si bien no se realizó una gran cantidad de desarrollo, en este trabajo de título se logró explorar, validar y diseñar diversas soluciones para dolores de la industria inmobiliaria. Se exploró problemas de arquitectura, modelo de datos, diseño de sistemas web y de inteligenica artificial.
+
+Se aplicaron conocimientos avanzados de computación para entender los problemas y sus propiedades, se diseño sistemas complejos, siguiendo diferentes estándares de la ingeniería de software, como SOLID y Agile, y se realizó una planificación del desarrollo e iteración inicial de estas soluciones es una nueva empresa, validando soluciones y tecnologías.
+
+Gran parte del trabajo realizado tendrá grandes frutos a futuro
+
 
 
 
