@@ -77,7 +77,6 @@ El segundo pilar es la gestión de clientes. Se busca desarrollar la integració
 // Todo esto se buscará ser administrado en un sistema centralizado, que además entregará reportería al estado de la venta de los proyectos inmobiliaria.
 
 
-
 == Objetivos del Trabajo de Título
 
 
@@ -201,11 +200,6 @@ En el caso del ejemplo, lo que se realizó fue montar un servidor que habilite p
 
 Este desarrollo no solo permitió obtener una solución funcional rápidamente, sino que también permitió añadir funcionalidades adicionales para agilizar la operación, como el envió de la cotización al cliente automáticamente, el guardado de los clientes en una tabla, y el guardado de las cotizaciones generadas en una carpeta de Google Drive.
 
-// #TT.todo[Explicar el principio de composición y como se aplica en MOME. 2 ejemplos:
-
-// - La carga de inventario a partir de un archivo de excel requeire validar datos. Este validador es una pieza independiente. A pesar de que fue desarrollado para cargar el inventario a la bdd, el sistema de validación está usado para poblar datos de una página directamente desde Google Sheets.  Esto ayuda en el principio ágil: si bien, una carga de inventario idealmente es a través de un admin, que permita visualizar los datos, guardalos en nuestra propia BDD, y ordenarlos en nuestro propio formato, la prioridad es tener software que funcione, por tanto conectarlo con Google Sheets es la solución inicial ideal, y la composición permitirá que lo que se haga sirva para el objetivo final. Hacer diagrama.
-// - Generador de cotizaciones, que requiere generar PDFs y generar un registro de clientes y usuarios. Este sistema requiere la carga de la UF, fichas de las unidades, y escoger que unidad se queire cotizar. También, esto podría ser hecho en un dashboard donde se vean clientes, unidades y cotizaciones. Pero lo importante es la generación de PDFs, que fue tratado como componente aparte, y se conecto a Google Sheets inicialmente para la obtención de la información y las fichas de las unidades.
-// ]
 
 #pagebreak(weak: true)
 = Elección de la arquitectura de la aplicación <testing-on-the-architecture>
@@ -305,9 +299,6 @@ Se realizó un desarrollo de funcionalidades en Convex, incluyendo las funcional
 
 Convex no provee un servicio para hostear servicios frontend, por lo que se utilizó #link("https://cloudflare.com")[Cloudflare] temporalmente, dado que posee plan gratuito, y porque ya es parte de la infraestructura de MOME dado que es usado como DNS. Luego del trabajo de título, se evaluará migrar a otro servicio más simple aún, como #link("https://vercel.com")[Vercel].
 
-// #TT.todo[
-//   Desafió: Backend a utilizar, requerimientos existentes dado el contexto. Diferentes tipos de datos, poca cantidad de escritura de datos, iteración rápida buscada en el desarrollo, guardado de imágenes y sistema de tareas, autentificación y autorización, etc.
-// ]
 
 #pagebreak(weak: true)
 = Base de datos del inventario
@@ -524,8 +515,6 @@ Si bien esto fue realizado para la carga a la base de datos, la validación es u
 
 Para las tablas de #text(fill: yellow.darken(20%))[relaciones] y las #text(fill: red)[unidades], se implementaron #text(fill: blue)[esquemas abstractos] que son heredados por otros o por #text(fill: green)[esquemas concretos], que poseen un nombre único dentro de su tabla, y posee atributos específicos. Los #text(fill: purple)[modelos] y #text(fill: purple)[programas] son tablas asociadas solamente a viviendas.
 
-// La implementación de esto en código se ve de la siguiente forma:
-
 #figure(
   grid(
     columns: (auto, auto),
@@ -587,26 +576,8 @@ Para las tablas de #text(fill: yellow.darken(20%))[relaciones] y las #text(fill:
   caption: [Simplificación de la implementación de los esquemas en Convex],
 )
 
-
-// #TT.todo[
-// - Diagrama simplificado de la BDD
-// - Como se llevó la BDD a código
-// - Separación de modelo y programa
-// - Carga de datos, librería creada
-// - Como se cargan las restricciones
-// ]
-
-
-// #TT.todo[
-//   Explicar desafió: como se almacena el inventario del proyecto, considerando que una unidad podría ser de diferentes tipos, relacionado a cierto programa y modelo (donde el modelo tiene una imagen de planta), puede requerir diferentes atributos dependiendo del tipo, podría estar en una etapa o torre, etc. Registro de cambios de precio y estado. 
-// ]
-
 #pagebreak(weak: true)
 = Sistema de páginas white-label <section.white-label>
-
-// #TT.todo[
-//   Explicar desafió: creación de componentes whitelabel, sistema de tokens de diseño para “pintar” componentes, revisión continua con equipo diseñador, renderizado de la página y la carga de componentes dinámicos (idea de backend for frontend, problemas de arquitecturas client-first), etc.
-// ]
 
 == Problema a resolver
 
@@ -696,8 +667,6 @@ En el periodo del trabajo de título, no se alcanzó a realizar estudios de usab
 
 Para los datos de disponibilidad y precios de las unidades, se decidió empezar con datos estáticos a partir de los datos reales. En la última semana del trabajo de título, se añadió la carga de datos a partir de Google Sheets y el sistema realizado en la carga de inventario.
 
-
-// #pagebreak(weak: true)
 = Inteligencia artificial en inbox
 
 == Problema a resolver
