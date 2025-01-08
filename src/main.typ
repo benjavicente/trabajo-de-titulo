@@ -772,10 +772,7 @@ Si bien no se realizó una gran cantidad de desarrollo, en este trabajo de títu
 
 Se aplicaron conocimientos avanzados de computación para entender los problemas y sus propiedades, se diseño sistemas complejos, siguiendo diferentes estándares de la ingeniería de software, como SOLID y Agile, y se realizó una planificación del desarrollo e iteración inicial de estas soluciones es una nueva empresa, validando soluciones y tecnologías.
 
-Gran parte del trabajo realizado tendrá grandes frutos a futuro
-
-
-
+No se pudo observar resultados concretos de todas las soluciones llevadas a cabo, dado la temprana etapa de la empresa y que se no se inició el trabajo de ventas de la mayoría de los clientes en el periodo del trabajo de título. Sin embargo, este trabajo realizado establece una base sólida para el desarrollo futuro de la empresa, dado las estrategias y tecnologías establecidas.
 
 #TT.bibliography("bibliography.yml")
 
