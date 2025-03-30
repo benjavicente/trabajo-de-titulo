@@ -22,6 +22,8 @@ para el código y [fletcher](https://typst.app/universe/package/fletcher) para h
 ```typst
 #import "/template/thesis.typ" as TT
 #import "/template/cover.typ": cover
+#set document(author: author, title: title)
+#show: TT.template
 #cover(...)
 #TT.main_outline(depth: 2)
 #TT.figure_outline()
