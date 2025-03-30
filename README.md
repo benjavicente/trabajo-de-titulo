@@ -1,21 +1,36 @@
 # Trabajo de título
 
-Mi informe de trabajo de título, usando [typst](https://typst.app/home/).
+Template del Trabajo de título en [typst](https://typst.app/home/), junto a mi trabajo de título de referencia.
+Todo mi informe fue realizado con typst, incluyendo figuras. Pueden usar este como punto de partida.
 
 ## Template
 
-Próximamente pienso ordenarlo mejor para que sea más fácil usarlo como template.
-Ahora que estoy probando temas de formato y como este se ve con lo que estoy escribiendo, lo estoy dejando todo junto.
+Esto está separado en 2 directorios, template y thesis. EL template incluye:
 
-Lo que tengo incluye:
-
-- Los estilos mínimos pedidos (y con arreglos que la plantilla de Word no tiene).
-- Portada.
-- Tabla de contenidos.
-- Tabla de figuras.
-- Estilos para insertar código (con [codly](https://typst.app/universe/package/codly)).
+- Los estilos mínimos pedidos (y con arreglos que la plantilla de Word no tiene)
+- Portada
+- Tabla de contenidos
+- Tabla de figuras
 - Bibliografía APA que [lee BibLaTeX `.bib` o Hayagriva `.yml`](https://github.com/typst/hayagriva/blob/main/docs/file-format.md)
-- Anexos.
+- Anexos
+
+El template no incluye ningún paquete externo. Recomiendo revisar [codly](https://typst.app/universe/package/codly)
+para el código y [fletcher](https://typst.app/universe/package/fletcher) para hacer diagramas, que uso en mi informe.
+
+### Estructura básica
+
+```typst
+#import "/template/thesis.typ" as TT
+#import "/template/cover.typ": cover
+#cover(...)
+#TT.main_outline(depth: 2)
+#TT.figure_outline()
+// Resumen y abstract aquí
+#show: TT.content
+// Contenido aquí
+#TT.bibliography("path a la bibliografía")
+#TT.appendix("path al apéndice si existe")
+```
 
 ### Compilar
 
@@ -23,7 +38,7 @@ Instalar [typst](https://github.com/typst/typst?tab=readme-ov-file#installation)
 
 ```bash
 # typst watch [input] [output]
-typst watch ./src/main.typ main.pdf
+typst watch --root . ./thesis/main.typ thesis.pdf
 ```
 
 ### Por qué no usar X
@@ -36,7 +51,7 @@ typst watch ./src/main.typ main.pdf
 #### LaTeX
 
 Más cacho de configurar el formato y más cacho el setup de compilación.
-Eso si, es LaTeX es mucho más extensible, hay herramientas como (tectonic)[https://tectonic-typesetting.github.io/en-US/] que ayudan en la compilación, y muy buenos paquetes en comparación a los de typst.
+Eso si, es LaTeX es mucho más extensible (aunque más difícil), hay herramientas como (tectonic)[https://tectonic-typesetting.github.io/en-US/] que ayudan en la compilación, y muy buenos paquetes.
 
 ### Setup recomendado en VSCode
 

@@ -8,7 +8,6 @@
 / Bienes primarios y secundarios: Separación realizada en proyectos inmobiliarios donde se busca que los bienes secundarios se vendan asociados a los primarios. Estacionamiento y bodegas suelen ser bienes secundarios, mientras que viviendas y oficinas son bienes primarios.
 
 
-
 = Proceso de desarrollo <appendix.DevelopmentProcess>
 
 / Entender el problema: Identificar los requerimientos y sus prioridades, entendiendo el dolor a resolver y cual es el estado del arte, desde lo tecnológico a lo existente en el mercado.
@@ -146,7 +145,5 @@
       // ...
     }
     ```
-
-    
   ]
 )

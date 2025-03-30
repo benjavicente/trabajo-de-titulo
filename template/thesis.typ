@@ -1,5 +1,3 @@
-#import "typst-fixes.typ": fix_indent
-
 // Template de Trabajo de Título. Solo incluye estilos y configuraciones generales.
 #let template(doc) = {
   // Formato carta
@@ -10,7 +8,7 @@
   // Sangria de 1.27 cm
   // Justificados
   // Espaciado doble enter 2em
-  set par(spacing: 2em, leading: 1em, justify: true,  first-line-indent: 1.27cm)
+  set par(spacing: 2em, leading: 1em, justify: true,  first-line-indent: ( amount: 1.27cm, all: true ))
 
   // Times New Roman tamaño 12
   set text(lang: "es", font: "Times New Roman", size: 12pt)
@@ -41,9 +39,10 @@
   // No enumerar títulos antes del contenido
   set heading(numbering: none)
 
-  fix_indent(doc)
+  doc
 }
 
+// Funciones generales
 
 // Outline de las secciones
 #let main_outline(depth: 2) = {
@@ -56,12 +55,15 @@
   outline(title: none, indent: auto, target: figure)
 }
 
-// Formato del contenido de la página
+// Inicio del contenido principal
 #let content(doc) = {
   pagebreak(weak: true)
   set heading(numbering: "1.")
   doc
 }
+
+// TODO: el path relativo es desde aquí, se debe usar path absoluto del proyecto hasta
+// que se solucione la siguiente issue https://github.com/typst/typst/issues/971
 
 #let originalBibliography = bibliography
 // Bibliografía con estilo APA
@@ -70,8 +72,7 @@
   originalBibliography(path, style: "apa")
 }
 
-
-// Incluir apendice como página externa
+// Incluir apéndice como página externa
 #let appendix(path) = {
   pagebreak(weak: true)
   // Se establece que la numeración de las secciones del apéndice comience en 1,
@@ -83,6 +84,7 @@
   include(path)
 }
 
+// Utilidad para marcar partes por hacer
 #let todo(body) = {
   v(-1em)
   box(fill: gray.lighten(80%), outset: 0.5em, width: 100%)[

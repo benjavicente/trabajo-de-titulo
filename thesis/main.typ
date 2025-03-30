@@ -1,19 +1,17 @@
-#import "template.typ" as TT
-#import "cover.typ": cover
-#import "@preview/fletcher:0.5.3" as fletcher: diagram, node, edge
-#import "@preview/codly:1.0.0": codly-init, codly
+#import "/template/thesis.typ" as TT
+#import "/template/cover.typ": cover
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
+#import "@preview/codly:1.3.0": codly-init, codly
 #show: codly-init.with()
 #codly(zebra-fill: none, lang-stroke: none, stroke: 1pt + black.lighten(75%), inset: 0.3em)
-
 
 #let title = "Desarrollo de herramientas white-label para la venta inmobiliaria en MOME"
 #let author = "Benjamín Vicente Goecke"
 
-#show: TT.template
 #set document(author: author, title: title)
+#show: TT.template
 
 #cover(
-  uc-logo: "./logo-uc-negro.svg",
   header: [
     Escuela de Ingeniería.
     #parbreak()
@@ -34,13 +32,12 @@
   date: "20 de enero del 2025",
 )
 
-
 #TT.main_outline(depth: 2)
 #TT.figure_outline()
 
 = Resumen
 
-En este informe, se muestra el trabajo realizado por Benjamín Vicente Goecke en el trabajo de título, entre septiembre y diciembre del 2024, desempáñandose como CTO en MOME. Los proyectos establecidos fueron la creación de un sistema para páginas web _white-label_ para la venta inmobiliaria, y la integración de inteligencia artificial en los canales de fuerza de ventas.
+En este informe, se muestra el trabajo realizado por Benjamín Vicente Goecke en el trabajo de título, entre septiembre y diciembre del 2024, desempeñándose como CTO en MOME. Los proyectos establecidos fueron la creación de un sistema para páginas web _white-label_ para la venta inmobiliaria, y la integración de inteligencia artificial en los canales de fuerza de ventas.
 
 Dentro los proyectos, se resolvieron problemas de arquitectura, de la modelación de la base de datos del inventario, del diseño del sistema web requerido para las páginas _white-label_, y del desarrollo de un sistema para integrar una inteligencia artificial para ayudar a la fuerza de ventas.
 
@@ -109,7 +106,7 @@ Estas competencias se pueden entender como etapas en el desarrollo de soluciones
 
 En la inscripción del trabajo de título, se plantearon los siguientes 2 proyectos a desarrollar:
 
-1. El desarrollo de sistema _whitelabel_ para la creación de sitios web de proyectos inmobiliarios. Estos es, la creación de componentes que puedan ser personalizados como deseen las inmobiliarias, y la integración a un _content management system_ (CMS) que permita administrar las características e inventario de las unidades.
+1. El desarrollo de sistema _white-label_ para la creación de sitios web de proyectos inmobiliarios. Estos es, la creación de componentes que puedan ser personalizados como deseen las inmobiliarias, y la integración a un _content management system_ (CMS) que permita administrar las características e inventario de las unidades.
 
 2. La implementación de un _shared inbox_ impulsada por inteligencia artificial. Plataforma que permita el control y la gestión centralizada de la fuerza de ventas vía canales como WhatsApp, impulsada por inteligencia artificial, para otorgar respuestas 24/7 y reducir el trabajo realizado por la fuerza de ventas.
 
@@ -138,13 +135,12 @@ Se decidió seguir fuertemente los principios ágiles en el desarrollo de softwa
 
 Yo implementé y organicé un seguimiento de tareas, usando #link("https://linear.app/homepage")[Linear]. Fui reconociendo los proyectos y tareas claves, y las organicé en tareas accionables concretas. Con el equipo, iterativamente fuimos priorizando los proyectos, y cada día revisábamos el avance. 
 
-Si bien llevamos ciertos rituales asociados a la metodología Scrum como reuniones de revisión diarias @scrum, decidimos no seguirla extrictamente dado el contexto de la empresa, donde no existe un producto completamente definido como tal, y se espera validar y experimentar con nuestros primeros clientes.
+Si bien llevamos ciertos rituales asociados a la metodología Scrum como reuniones de revisión diarias @scrum, decidimos no seguirla estrictamente dado el contexto de la empresa, donde no existe un producto completamente definido como tal, y se espera validar y experimentar con nuestros primeros clientes.
 
-// #TT.todo[Explicar brevemente como se llevó la metodología de trabajo en MOME, cosiderando que es una startup y yo he estado ordenando los objetivos y prioridades. Destacar el principio ágil]
 
 == Composición en el desarrollo de software <composition>
 
-Uno de los princiós fuertemente usados en el desarrollo fue la composición. Se entiende como composición el patrón que permite construir sistemas complejos a partir de sistemas más simples e independientes. Una buena composición sigue los principios SOLID @solid, aplicados a cualquier nivel de abstracción que involucre la solución.
+Uno de los principios fuertemente usados en el desarrollo fue la composición. Se entiende como composición el patrón que permite construir sistemas complejos a partir de sistemas más simples e independientes. Una buena composición sigue los principios SOLID @solid, aplicados a cualquier nivel de abstracción que involucre la solución.
 
 
 Por ejemplo, un desarrollo que se realizó fue la generación de PDFs de cotización de proyectos inmobiliarios. La cotización usa la información de una unidad, del cliente, descuentos aplicados, precio UF referencial, y fichas de las unidades y proyectos.
@@ -293,7 +289,7 @@ Luego de pruebas de concepto con las diferentes soluciones, y un análisis reali
 - Tuvo la implementación, e iteración de funcionalidades, más rápida de todas las soluciones.
 
 
-Implementa el principio de consultas y mutuaciones separadas @command-query-separation, permitiendo optimizaciones por defecto, como cache automático en consultas y complicidad ACID en mutaciones @acid, importante dado el alto ticket por unidad. Además, permite generar rutinas públicas, que pueden ser llamadas desde la integración que proveen para el navegador.
+Implementa el principio de consultas y mutaciones separadas @command-query-separation, permitiendo optimizaciones por defecto, como cache automático en consultas y complicidad ACID en mutaciones @acid, importante dado el alto ticket por unidad. Además, permite generar rutinas públicas, que pueden ser llamadas desde la integración que proveen para el navegador.
 
 Se realizó un desarrollo de funcionalidades en Convex, incluyendo las funcionalidades de la gestión de inventario y de la inteligencia artificial que se mencionan más adelante, validando que la solución era adecuada.
 
@@ -340,7 +336,7 @@ Sobre como diferenciar los diferentes tipos de unidades, se debe considerar que 
 
 Una opción, que se hace en soluciones importantes en el mercado, es separar los diferentes tipos en diferentes tablas, incluyendo bienes secundarios. Esto permite más fácilmente añadir restricciones en los diferentes tipos. Sin embargo, separarlos añade complejidad al sistema, dado que cualquier funcionalidad asociada a las unidades debe considerar toda tabla de unidades.
 
-La solución que se escogió es tener todo tipo de inmueble en una misma tabla, incluyendo secundarios, que serán diferenciados por un atributo. Esto permite mayor flexibilidad en el sistema, ya que cualquier tipo de funcionalidad puede ser implementado directamente en la tabla de unidades, sin requerir unir datos con cada tipo. Y si se requiere restringir, se puede hacer proactivamente.
+La solución que se escogió es tener todo tipo de inmueble en una misma tabla, incluyendo secundarios, que serán diferenciados por un atributo. Esto permite mayor flexibilidad en el sistema, ya que cualquier tipo de funcionalidad puede ser implementado directamente en la tabla de unidades, sin requerir unir datos con cada tipo. Y si se requiere restringir, se puede hacer proactívamente.
 
 Para cada tipo de datos, se añadió un atributo discriminador, que permite diferenciar los diferentes tipos de unidades. Dependiendo del tipo, se valida los atributos que son requeridos. Esto además permite mayor flexibilidad al modelar relaciones entre unidades, por ejemplo, en caso que una unidad requiera ser cotizada en conjunto con otra unidad.
 
@@ -486,7 +482,7 @@ Si bien esto fue realizado para la carga a la base de datos, la validación es u
     node((-1, 0), 
       class-diagram-box(
         color: blue.lighten(80%),
-        title: [Relacion],
+        title: [Relación],
         class-diagram-property([id], `int`),
         class-diagram-property([orden], `float`),
         class-diagram-property([idUnidad], `int`),
@@ -612,6 +608,7 @@ RSC provee una arquitectura distinta a las páginas web tradicionales, que permi
   - Permite cargar componentes interactivos de forma declarativa y con composición. Otras alternativa es #link("https://astro.build/")[Astro], que también solo envía el código necesario al navegador.
   - Frameworks con RSC permiten el envío de fragmentos de forma más declarativa y con composición. Frameworks tradicionales recurren a herramientas más imperativos, como #link("https://htmx.org/")[HTMX] para enviar partes de la página, en vez de re-cargar la página completa en la navegación.
 
+En el periodo del trabajo de título, NextJS es el único framework con soporte completo de RSC, y además, la compañía detrás de NextJS, Vercel, tiene empleados trabajando en el desarrollo de React. Por lo tanto, se decidió utilizar NextJS para el desarrollo de las páginas _white-label_.
 
 === Sistema de diseño
 
@@ -677,7 +674,7 @@ En diferentes industrias, se han desarrollado diferentes automatizaciones que ha
 
 Es por esto que se buscó desarrollar un sistema de inteligencia artificial generativa que permita reducir la dependencia de vendedores, y a la vez entregue un mayor seguimiento y reportabilidad a los gerentes de ventas.
 
-Una característica importante de este sistema es usar medios de comunicación cercanos a los clientes. WhatsApp es el medio más usado en latinoamérica, y en primeros análisis, fue el medio más preferible por los clientes. Por lo tanto, se buscó una integración a WhatsApp, que permita potenciar el canal existente de WhatsApp, en el mismo número que utilizan los vendedores.
+Una característica importante de este sistema es usar medios de comunicación cercanos a los clientes. WhatsApp es el medio más usado en Latinoamérica, y en primeros análisis, fue el medio más preferible por los clientes. Por lo tanto, se buscó una integración a WhatsApp, que permita potenciar el canal existente de WhatsApp, en el mismo número que utilizan los vendedores.
 
 Para la respuestas automáticas con inteligencia artificial, hay 2 requisitos: primero, debe responder naturalmente, por lo que la IA, además de responder con un lenguaje natural adecuado, debe esperar un pequeño tiempo antes de responder, poseer el contexto de los mensajes anteriores. Segundo, deberá poder ser interrumpido por un vendedor, que tome el control de la conversación.
 
@@ -763,17 +760,18 @@ Otro desarrollo destacable en el periodo del trabajo de título fue el refractor
 Cambiar esto de forma manual tomaría múltiples horas, usar métodos como expresiones regulares no es suficiente, y usar modelos de IA generativa corre el riesgo de cambiar código que no debería ser cambiado. Yo no conocía en ese momento herramientas que pudieran realizar este trabajo, pero si sabia que existían y como se debería transformar el código.
 
 Es por esto que se usó modelos generativos para ayudar a generar código complejo para la refactorización. Se fue iterando con un modelo generativo, iterando el código complejo de 
-transformaciones de _abstract syntax trees_ con `jscodeshift`, hasta lograr lo deseado, en un menos de 1 hora, cambiando sobre de 200 lineas de código. Se puede ver el código final en el @appendix.jscodeshift.
+transformaciones de _abstract syntax trees_ con #link("https://github.com/facebook/jscodeshift")[`jscodeshift`], hasta lograr lo deseado, en un menos de 1 hora, cambiando sobre de 200 lineas de código. Se puede ver el código final en el @appendix.jscodeshift.
 
 
 = Conclusiones
 
-Si bien no se realizó una gran cantidad de desarrollo, en este trabajo de título se logró explorar, validar y diseñar diversas soluciones para dolores de la industria inmobiliaria. Se exploró problemas de arquitectura, modelo de datos, diseño de sistemas web y de inteligenica artificial.
+Si bien no se realizó una gran cantidad de desarrollo, en este trabajo de título se logró explorar, validar y diseñar diversas soluciones para dolores de la industria inmobiliaria. Se exploró problemas de arquitectura, modelo de datos, diseño de sistemas web y de inteligencia artificial.
 
-Se aplicaron conocimientos avanzados de computación para entender los problemas y sus propiedades, se diseño sistemas complejos, siguiendo diferentes estándares de la ingeniería de software, como SOLID y Agile, y se realizó una planificación del desarrollo e iteración inicial de estas soluciones es una nueva empresa, validando soluciones y tecnologías.
+En las secciones de cada problema, se demostró como se entendieron, empleando conocimientos de computación y del contexto inmobiliario, para identificar sus requerimientos claves.
+Siguiendo diferentes estándares de la ingeniería de software, como SOLID y Agile, se diseñó sistemas complejos que abordaban los requerimientos identificados.
+Y finalmente, se realizó una planificación del desarrollo e iteración inicial de estos sistemas, validando soluciones y tecnologías.
 
 No se pudo observar resultados concretos de todas las soluciones llevadas a cabo, dado la temprana etapa de la empresa y que se no se inició el trabajo de ventas de la mayoría de los clientes en el periodo del trabajo de título. Sin embargo, este trabajo realizado establece una base sólida para el desarrollo futuro de la empresa, dado las estrategias y tecnologías establecidas.
 
-#TT.bibliography("bibliography.yml")
-
-#TT.appendix("appendix.typ")
+#TT.bibliography("/thesis/bibliography.yml")
+#TT.appendix("/thesis/appendix.typ")
